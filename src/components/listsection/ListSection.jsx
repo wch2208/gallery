@@ -1,39 +1,34 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 import Masonry from "./Masonry";
+import MediaPopup from "./MediaPopup";
+import NavigationBar from "./navigationBar/NavigationBar";
+import { useRef } from "react";
 
 function ListSection() {
+  const scrollRef = useRef(null);
+
   const StyledContainer = styled(Grid)(({ theme }) => ({
     width: "100%",
     height: "100vh",
-
-    [theme.breakpoints.down("sm")]: {
-      height: "calc(100vh - 80px)",
-      backgroundColor: "gray",
-    },
-
-    padding: "0px",
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    overflow: "scroll",
   }));
 
+  const scrollToTop = () => {
+    scrollRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <StyledContainer
-      container
-      sx={{
-        // height: "95%",
-        // border: "1px solid blue",
-        // display: "flex",
-        // flexDirection: "row",
-        // flexWrap: "wrap",
-        // justifyContent: "center",
-        paddingLeft: 2,
-        paddingRight: 2,
-        width: "100%",
-        overflow: "scroll",
-      }}
-    >
-      <Grid item sx={12} xs={{}}>
-        {/* <img src="https://picsum.photos/844/390"></img> */}
+    <StyledContainer ref={scrollRef} container>
+      <Grid item xs={12}>
+        <MediaPopup />
         <Masonry />
+        <NavigationBar scrollToTop={scrollToTop} />
       </Grid>
     </StyledContainer>
   );

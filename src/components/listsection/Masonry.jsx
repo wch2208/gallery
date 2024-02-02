@@ -1,36 +1,45 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
-import { styled } from "@mui/material/styles";
-
-// const Label = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(0.5),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-//   borderBottomLeftRadius: 0,
-//   borderBottomRightRadius: 0,
-// }));
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { togglePopup } from "../../features/openPopup/openPopupSlice";
 
 export default function ImageMasonry() {
+  const dispatch = useDispatch();
+
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSm = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
+
+  let columns;
+  if (isXs) {
+    columns = 2;
+  } else if (isSm) {
+    columns = 3;
+  } else if (isMd) {
+    columns = 4;
+  } else if (isLg) {
+    columns = 5;
+  }
+
   return (
-    <Masonry columns={2} sx={{ margin: 0 }}>
+    <Masonry columns={columns} sx={{ margin: 0 }}>
       {itemData.map((item, index) => (
         <div key={index}>
-          {/* <Label>{index + 1}</Label> */}
           <img
-            // srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
             srcSet={`${item.img}`}
-            // src={`${item.img}?w=162&auto=format`}
             src={`${item.img}`}
             alt={item.title}
-            //loading="lazy"
+            loading="lazy"
             style={{
               borderRadius: 10,
               display: "block",
               width: "100%",
+            }}
+            onClick={() => {
+              dispatch(togglePopup({ newState: true, newUrl: `${item.img}` }));
             }}
           />
         </div>
@@ -103,6 +112,346 @@ const itemData = [
   {
     img: "https://images.unsplash.com/photo-1627328561499-a3584d4ee4f7",
     title: "Mountain",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
   },
   {
     img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",

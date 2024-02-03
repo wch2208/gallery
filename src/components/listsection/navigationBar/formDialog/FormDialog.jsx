@@ -8,6 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { addOpen } from "../../../../features/addInputModal/addInputModalSlice";
+import { addDataState } from "../../../../features/itemData/itemDataSlice";
 
 export default function FormDialog() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function FormDialog() {
     dispatch(addOpen({ newState: false }));
   };
 
-  let token = process.env.REACT_APP_TOKEN;
+  const token = process.env.REACT_APP_TOKEN;
 
   const addData = async (newImg, newVideo, title) => {
     try {
@@ -40,6 +41,8 @@ export default function FormDialog() {
         }
       );
       const data = await response.json();
+      dispatch(addDataState(data));
+      console.log(data);
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }

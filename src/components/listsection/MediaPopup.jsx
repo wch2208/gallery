@@ -9,6 +9,7 @@ import Slide from "@mui/material/Slide";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePopup } from "../../features/openPopup/openPopupSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { delData } from "../../features/itemData/itemDataSlice";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -17,8 +18,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MediaPopup() {
   const dispatch = useDispatch();
   const togglePopupState = useSelector(state => state.openPopup);
+  const id = togglePopupState.id;
   //vercel Environment Variables에 등록
-  let token = process.env.REACT_APP_TOKEN;
+  const token = process.env.REACT_APP_TOKEN;
 
   const deleteData = async e => {
     try {
@@ -29,18 +31,20 @@ export default function MediaPopup() {
           method: "DELETE", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+            Authorization: token,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            img: "",
-            video: "",
-            title: "",
-            id: togglePopupState.id,
+            id: id,
           }),
         }
       );
       const data = await response.json();
+      //
+      dispatch(delData(id));
+      dispatch(togglePopup({ newState: false, newUrl: `/` }));
+      console.log(data);
+      //
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }

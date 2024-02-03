@@ -34,7 +34,20 @@ export const itemDataSlice = createSlice({
     error: null,
   },
   reducers: {
-    //
+    //삭제
+    delData: (state, action) => {
+      // const index = state.itemData.findIndex(
+      //   item => item.id === action.payload
+      // );
+      // state.itemData.splice(index, 1);
+      state.itemData = state.itemData.filter(
+        item => item.id !== action.payload
+      );
+    },
+    //추가
+    addDataState: (state, action) => {
+      state.itemData = [action.payload, ...state.itemData];
+    },
   },
   extraReducers: builder => {
     builder
@@ -51,5 +64,7 @@ export const itemDataSlice = createSlice({
       });
   },
 });
+
+export const { delData, addDataState } = itemDataSlice.actions;
 
 export default itemDataSlice.reducer;

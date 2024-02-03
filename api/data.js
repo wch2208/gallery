@@ -7,7 +7,7 @@ export default function handler(req, res) {
     const newItem = req.body;
     itemData = [newItem, ...itemData];
 
-    res.status(200).json({ message: "사용자를 생성했습니다!" });
+    res.status(200).json(itemData[0]);
   } else if (req.method === "DELETE") {
     //DELETE 로직
     const { id } = req.body;

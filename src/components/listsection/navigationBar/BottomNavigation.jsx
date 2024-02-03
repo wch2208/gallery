@@ -3,14 +3,13 @@ import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 export default function SimpleBottomNavigation({ scrollToTop }) {
-  const [value, setValue] = React.useState(0);
-
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://family-album-three.vercel.app/api/mediaList",
+        "https://family-album-three.vercel.app/api/data",
         {
           method: "GET", // HTTP 메소드 지정
           headers: {
@@ -26,21 +25,44 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
   };
+  const addData = async () => {
+    try {
+      const response = await fetch(
+        "https://family-album-three.vercel.app/api/data",
+        {
+          method: "POST", // HTTP 메소드 지정
+          headers: {
+            // 헤더에 Authorization 추가
+            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            img: "https://content.surfit.io/thumbs/image/KpWLw/ElOj2/48830203765bcfcc12b203.png/cover-center-2x.webp",
+            video: "",
+            title: "",
+            id: Math.random().toString(36).substr(2, 16),
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("요청 중 에러가 발생했습니다.", error);
+    }
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        onClick={fetchData}
-      >
+      <BottomNavigation showLabels onClick={fetchData}>
         <BottomNavigationAction
           label="Home"
           icon={<HomeIcon />}
           onClick={scrollToTop}
+        />
+        <BottomNavigationAction
+          label="Add"
+          icon={<AddBoxIcon />}
+          onClick={addData}
         />
       </BottomNavigation>
     </Box>

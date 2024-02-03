@@ -6,7 +6,7 @@ import { togglePopup } from "../../features/openPopup/openPopupSlice";
 
 export default function ImageMasonry() {
   const { itemData, status } = useSelector(state => state.itemData);
-  console.log("itemData: ", itemData);
+  //console.log("itemData: ", itemData);
   const dispatch = useDispatch();
   const theme = useTheme();
 

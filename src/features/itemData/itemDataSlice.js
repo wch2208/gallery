@@ -57,6 +57,7 @@ export const itemDataSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.itemData = action.payload;
+        console.log("데이터패치 성공:", state.itemData);
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.status = "failed";

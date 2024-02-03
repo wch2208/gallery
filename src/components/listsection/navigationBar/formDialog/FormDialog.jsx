@@ -60,7 +60,6 @@ export default function FormDialog() {
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const newImg = formJson.imgUrl;
-            const newVideo = formJson.videoUrl;
             const title = formJson.text;
 
             dispatch(
@@ -68,7 +67,7 @@ export default function FormDialog() {
                 newState: false,
               })
             );
-            addData(newImg, newVideo, title);
+            addData(newImg, title);
           },
         }}
       >
@@ -84,16 +83,7 @@ export default function FormDialog() {
             variant="standard"
             sx={{ marginBottom: "40px", marginTop: 0 }}
           />
-          <DialogContentText>영상 주소:</DialogContentText>
-          <TextField
-            margin="dense"
-            id="video"
-            name="videoUrl"
-            type="url"
-            fullWidth
-            variant="standard"
-            sx={{ marginBottom: "40px", marginTop: 0 }}
-          />
+
           <DialogContentText>제목:</DialogContentText>
           <TextField
             margin="dense"

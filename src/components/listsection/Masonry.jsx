@@ -40,7 +40,13 @@ export default function ImageMasonry() {
               width: "100%",
             }}
             onClick={() => {
-              dispatch(togglePopup({ newState: true, newUrl: `${item.img}` }));
+              dispatch(
+                togglePopup({
+                  newState: true,
+                  newUrl: `${item.img}`,
+                  id: `${item.id}`,
+                })
+              );
             }}
           />
           {/* <video

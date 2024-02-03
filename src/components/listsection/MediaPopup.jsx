@@ -39,6 +39,7 @@ export default function MediaPopup() {
             </IconButton>
           </Toolbar>
         </AppBar>
+        {/* <video autoPlay muted Loop src={togglePopupState.url} alt="img" /> */}
         <img src={togglePopupState.url} alt="img" />
       </Dialog>
     </React.Fragment>

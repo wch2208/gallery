@@ -6,7 +6,6 @@ export const openPopupSlice = createSlice({
   reducers: {
     togglePopup: (state, action) => {
       const { newState, newUrl } = action.payload;
-      console.log("토글리듀서", state);
       return { state: newState, url: newUrl };
     },
   },

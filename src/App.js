@@ -1,9 +1,12 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import ListSection from "./components/listsection/ListSection";
-import NavigationBar from "./components/listsection/navigationBar/NavigationBar";
 import { styled } from "@mui/material/styles";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 function App() {
+  useEffect(() => {}, []);
+
   const StyledContainer = styled(Grid)(({ theme }) => ({
     width: "100%",
     height: "100vh",
@@ -12,11 +15,11 @@ function App() {
 
   return (
     <StyledContainer container>
-      <Grid item xs={12}>
-        <Grid container sx={{ width: "100%", height: "100%", padding: "0px" }}>
-          <ListSection />
-        </Grid>
+      {/* <Grid item xs={12}> */}
+      <Grid container sx={{ width: "100%", height: "100%", padding: "0px" }}>
+        <ListSection />
       </Grid>
+      {/* </Grid> */}
     </StyledContainer>
   );
 }

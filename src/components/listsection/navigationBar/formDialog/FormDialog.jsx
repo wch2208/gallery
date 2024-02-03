@@ -1,5 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
+import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -9,10 +10,28 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { addOpen } from "../../../../features/addInputModal/addInputModalSlice";
 import { addDataState } from "../../../../features/itemData/itemDataSlice";
+import { useState } from "react";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
+import ContentPasteOffIcon from "@mui/icons-material/ContentPasteOff";
 
 export default function FormDialog() {
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.addOpen.state);
+  const [clipboard, setClipboard] = useState("");
+
+  //클립보드의 text 가져오는 함수
+  async function getClipboardURL() {
+    try {
+      const text = await navigator.clipboard.readText();
+      console.log(text);
+      return text;
+    } catch (err) {
+      console.error("Failed to read clipboard contents: ", err);
+    }
+  }
+  // 붙여넣기 버튼을 만든다.
+  // 버튼을 누르면 함수가 작동하면서 state를 만들고
+  // state를 input에 넣는다.
 
   const handleClose = () => {
     dispatch(addOpen({ newState: false }));
@@ -69,15 +88,31 @@ export default function FormDialog() {
         <DialogTitle>컨텐츠 추가하기</DialogTitle>
         <DialogContent>
           <DialogContentText>이미지 주소:</DialogContentText>
-          <TextField
-            margin="dense"
-            id="img"
-            name="imgUrl"
-            type="url"
-            fullWidth
-            variant="standard"
-            sx={{ marginBottom: "40px", marginTop: 0 }}
-          />
+          <Box sx={{ display: "flex" }}>
+            <TextField
+              margin="dense"
+              id="img"
+              name="imgUrl"
+              type="url"
+              fullWidth
+              variant="standard"
+              sx={{ marginBottom: "40px", marginTop: 0 }}
+              defaultValue={clipboard}
+            />
+            {clipboard == "" ? (
+              <ContentPasteIcon
+                onClick={() => {
+                  getClipboardURL().then(setClipboard);
+                }}
+              />
+            ) : (
+              <ContentPasteOffIcon
+                onClick={() => {
+                  setClipboard("");
+                }}
+              />
+            )}
+          </Box>
 
           <DialogContentText>제목:</DialogContentText>
           <TextField

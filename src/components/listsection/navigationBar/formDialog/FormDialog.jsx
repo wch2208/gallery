@@ -26,7 +26,7 @@ export default function FormDialog() {
           method: "POST", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+            Authorization: process.env.REACT_APP_TOKEN,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

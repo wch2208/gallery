@@ -27,7 +27,7 @@ export default function MediaPopup() {
           method: "DELETE", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+            Authorization: process.env.REACT_APP_TOKEN,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -54,7 +54,7 @@ export default function MediaPopup() {
         TransitionComponent={Transition}
         sx={{ "& .MuiDialog-paper": { backgroundColor: "black" } }}
       >
-        <AppBar sx={{ position: "fiexd", top: 0, height: 70 }}>
+        <AppBar sx={{ position: "fiexd", top: 0, height: "55px" }}>
           <Toolbar
             sx={{
               position: "fixed",
@@ -95,7 +95,7 @@ export default function MediaPopup() {
           </Toolbar>
         </AppBar>
         {/* <video autoPlay muted Loop src={togglePopupState.url} alt="img" /> */}
-        <img src={togglePopupState.url} alt="img" style={{ marginTop: 70 }} />
+        <img src={togglePopupState.url} alt="img" style={{ marginTop: 56 }} />
       </Dialog>
     </React.Fragment>
   );

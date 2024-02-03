@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const openPopupSlice = createSlice({
   name: "openPopup",
-  initialState: { state: false, url: "", id: "" },
+  initialState: { state: false, url: "", id: "", title: "" },
   reducers: {
     togglePopup: (state, action) => {
-      const { newState, newUrl, id } = action.payload;
-      return { state: newState, url: newUrl, id };
+      const { newState, newUrl, id, title } = action.payload;
+      return { state: newState, url: newUrl, id: id, title: title };
     },
   },
 });

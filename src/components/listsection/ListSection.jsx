@@ -4,6 +4,7 @@ import Masonry from "./Masonry";
 import MediaPopup from "./MediaPopup";
 import NavigationBar from "./navigationBar/NavigationBar";
 import { useRef } from "react";
+import FormDialog from "./navigationBar/formDialog/FormDialog";
 
 function ListSection() {
   const scrollRef = useRef(null);
@@ -27,6 +28,7 @@ function ListSection() {
     <StyledContainer ref={scrollRef} container>
       {/* <Grid item xs={12}> */}
       <MediaPopup />
+      <FormDialog />
       <Masonry />
       <NavigationBar scrollToTop={scrollToTop} />
       {/* </Grid> */}

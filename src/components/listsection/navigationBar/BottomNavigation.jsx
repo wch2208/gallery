@@ -4,12 +4,18 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import { addOpen } from "../../../features/addInputModal/addInputModalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SimpleBottomNavigation({ scrollToTop }) {
+  const dispatch = useDispatch();
+  const isOpen = useSelector(state => state.addOpen);
+
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://family-album-three.vercel.app/api/data",
+        // "https://family-album-three.vercel.app/api/data",
+        "/api/data",
         {
           method: "GET", // HTTP 메소드 지정
           headers: {
@@ -25,31 +31,33 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
   };
-  const addData = async () => {
-    try {
-      const response = await fetch(
-        "https://family-album-three.vercel.app/api/data",
-        {
-          method: "POST", // HTTP 메소드 지정
-          headers: {
-            // 헤더에 Authorization 추가
-            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            img: "https://content.surfit.io/thumbs/image/KpWLw/ElOj2/48830203765bcfcc12b203.png/cover-center-2x.webp",
-            video: "",
-            title: "",
-            id: Math.random().toString(36).substr(2, 16),
-          }),
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log("요청 중 에러가 발생했습니다.", error);
-    }
-  };
+
+  // const addData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       // "https://family-album-three.vercel.app/api/data",
+  //       "/api/data",
+  //       {
+  //         method: "POST", // HTTP 메소드 지정
+  //         headers: {
+  //           // 헤더에 Authorization 추가
+  //           Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           img: "https://content.surfit.io/thumbs/image/KpWLw/ElOj2/48830203765bcfcc12b203.png/cover-center-2x.webp",
+  //           video: "",
+  //           title: "",
+  //           id: Math.random().toString(36).substr(2, 16),
+  //         }),
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log("요청 중 에러가 발생했습니다.", error);
+  //   }
+  // };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -62,7 +70,10 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
         <BottomNavigationAction
           label="Add"
           icon={<AddBoxIcon />}
-          onClick={addData}
+          onClick={() => {
+            dispatch(addOpen({ newState: true }));
+            console.log("addOpen state: ", isOpen);
+          }}
         />
       </BottomNavigation>
     </Box>

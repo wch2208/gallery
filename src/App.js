@@ -2,7 +2,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import ListSection from "./components/listsection/ListSection";
 import { styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 function App() {
   useEffect(() => {}, []);

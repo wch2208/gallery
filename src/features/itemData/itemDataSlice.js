@@ -13,8 +13,6 @@ export const fetchBlobDetails = createAsyncThunk(
   }
 );
 
-const firstUrl = "https://ocffhh8f9twiyh37.public.blob.vercel-storage.com/";
-
 export const itemDataSlice = createSlice({
   name: "itemData",
   initialState: {

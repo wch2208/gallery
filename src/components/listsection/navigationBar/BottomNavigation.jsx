@@ -26,7 +26,6 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
         }
       );
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
@@ -45,7 +44,6 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
           icon={<AddBoxIcon />}
           onClick={() => {
             dispatch(addOpen({ newState: true }));
-            console.log("addOpen state: ", isOpen);
           }}
         />
       </BottomNavigation>

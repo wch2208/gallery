@@ -43,7 +43,6 @@ export default function ImageMasonry() {
                 width: "100%",
               }}
               onClick={() => {
-                console.log("이미지 클릭감지: ", item);
                 dispatch(
                   togglePopup({
                     newState: true,

@@ -26,27 +26,6 @@ export const fetchData = createAsyncThunk(
   }
 );
 
-// const fetchData = async () => {
-//   try {
-//     const response = await fetch(
-//       // "https://family-album-three.vercel.app/api/data",
-//       "/api/data",
-//       {
-//         method: "GET", // HTTP 메소드 지정
-//         headers: {
-//           // 헤더에 Authorization 추가
-//           Authorization: "fiKyi3A8FTuyq65cdObDsodi",
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.log("요청 중 에러가 발생했습니다.", error);
-//   }
-// };
-
 export const itemDataSlice = createSlice({
   name: "itemData",
   initialState: {

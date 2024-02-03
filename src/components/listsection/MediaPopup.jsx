@@ -18,7 +18,7 @@ export default function MediaPopup() {
   const dispatch = useDispatch();
   const togglePopupState = useSelector(state => state.openPopup);
   //vercel Environment Variables에 등록
-  const token = process.env.REACT_APP_TOKEN;
+  let token = process.env.REACT_APP_TOKEN;
 
   const deleteData = async e => {
     try {
@@ -41,8 +41,6 @@ export default function MediaPopup() {
         }
       );
       const data = await response.json();
-      console.log(data);
-      console.log(togglePopupState);
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }

@@ -17,7 +17,7 @@ export default function FormDialog() {
     dispatch(addOpen({ newState: false }));
   };
 
-  const token = process.env.REACT_APP_TOKEN;
+  let token = process.env.REACT_APP_TOKEN;
 
   const addData = async (newImg, newVideo, title) => {
     try {
@@ -40,7 +40,6 @@ export default function FormDialog() {
         }
       );
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }

@@ -35,7 +35,7 @@ export default function ImageMasonry() {
               srcSet={`${item.img}`}
               src={`${item.img}`}
               alt={item.title}
-              loading="lazy"
+              //loading="lazy"
               style={{
                 borderRadius: 10,
                 display: "block",

@@ -1,4 +1,4 @@
-const itemData = require("./itemData.json");
+import itemData from "./itemData.json";
 
 export default function handler(req, res) {
   if (req.method === "GET") {

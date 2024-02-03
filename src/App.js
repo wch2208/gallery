@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
-  console.log("app.js에서 : ", items);
 
   const StyledContainer = styled(Grid)(({ theme }) => ({
     width: "100%",

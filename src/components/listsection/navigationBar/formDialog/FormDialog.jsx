@@ -17,6 +17,8 @@ export default function FormDialog() {
     dispatch(addOpen({ newState: false }));
   };
 
+  const token = process.env.REACT_APP_TOKEN;
+
   const addData = async (newImg, newVideo, title) => {
     try {
       const response = await fetch(
@@ -26,7 +28,7 @@ export default function FormDialog() {
           method: "POST", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: process.env.REACT_APP_TOKEN,
+            Authorization: token,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

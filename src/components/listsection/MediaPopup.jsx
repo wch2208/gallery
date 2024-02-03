@@ -17,6 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MediaPopup() {
   const dispatch = useDispatch();
   const togglePopupState = useSelector(state => state.openPopup);
+  const token = process.env.REACT_APP_TOKEN;
 
   const deleteData = async e => {
     try {
@@ -27,7 +28,7 @@ export default function MediaPopup() {
           method: "DELETE", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: process.env.REACT_APP_TOKEN,
+            Authorization: token,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

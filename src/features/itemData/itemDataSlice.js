@@ -1,22 +1,56 @@
-import { head, list } from "@vercel/blob";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const runtime = "edge";
-
 //비동기 액션 생성
-export const fetchBlobDetails = createAsyncThunk(
-  "itemData/fetchBlobDetails",
-  async function () {
-    const { blobList } = await list(process.env.BLOB_READ_WRITE_TOKEN);
-    console.log("데이터 패치 실행");
-    return blobList;
+export const fetchData = createAsyncThunk(
+  "itemData/fetchData",
+  async function (state) {
+    try {
+      const response = await fetch(
+        // "https://family-album-three.vercel.app/api/data",
+        "/api/data",
+        {
+          method: "GET", // HTTP 메소드 지정
+          headers: {
+            // 헤더에 Authorization 추가
+            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+
+      return data; // 액션의 데이터 반환(액션의 payload)
+    } catch (error) {
+      console.log("요청 중 에러가 발생했습니다.", error);
+    }
   }
 );
+
+// const fetchData = async () => {
+//   try {
+//     const response = await fetch(
+//       // "https://family-album-three.vercel.app/api/data",
+//       "/api/data",
+//       {
+//         method: "GET", // HTTP 메소드 지정
+//         headers: {
+//           // 헤더에 Authorization 추가
+//           Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.log("요청 중 에러가 발생했습니다.", error);
+//   }
+// };
 
 export const itemDataSlice = createSlice({
   name: "itemData",
   initialState: {
-    data: [],
+    itemData: [],
     status: "idle",
     error: null,
   },
@@ -25,22 +59,18 @@ export const itemDataSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchBlobDetails.pending, state => {
+      .addCase(fetchData.pending, state => {
         state.status = "loading";
       })
-      .addCase(fetchBlobDetails.fulfilled, (state, action) => {
+      .addCase(fetchData.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // action.payload에는 fetchBlobDetails의 반환 값이 들어있습니다.
-        state.data = action.payload;
-        console.log("블룹데이터:", state.data);
+        state.itemData = action.payload;
       })
-      .addCase(fetchBlobDetails.rejected, (state, action) => {
+      .addCase(fetchData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
-
-export const {} = itemDataSlice.actions;
 
 export default itemDataSlice.reducer;

@@ -1,5 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +8,7 @@ import Slide from "@mui/material/Slide";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePopup } from "../../features/openPopup/openPopupSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { delData } from "../../features/itemData/itemDataSlice";
+import { delDataState } from "../../features/itemData/itemDataSlice";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -19,32 +18,24 @@ export default function MediaPopup() {
   const dispatch = useDispatch();
   const togglePopupState = useSelector(state => state.openPopup);
   const id = togglePopupState.id;
-  //vercel Environment Variables에 등록
   const token = process.env.REACT_APP_TOKEN;
 
   const deleteData = async e => {
     try {
-      const response = await fetch(
-        // "https://family-album-three.vercel.app/api/data",
-        "/api/data",
-        {
-          method: "DELETE", // HTTP 메소드 지정
-          headers: {
-            // 헤더에 Authorization 추가
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: id,
-          }),
-        }
-      );
+      const response = await fetch("/api/data", {
+        method: "DELETE",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      });
       const data = await response.json();
-      //
-      dispatch(delData(id));
+      dispatch(delDataState(id));
       dispatch(togglePopup({ newState: false, newUrl: `/` }));
       console.log(data);
-      //
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
@@ -75,7 +66,6 @@ export default function MediaPopup() {
               onClick={() => {
                 dispatch(togglePopup({ newState: false, newUrl: `/` }));
               }}
-              // sx={{ backgroundColor: "#d4d1cc" }}
             >
               <CloseIcon />
             </IconButton>
@@ -86,19 +76,11 @@ export default function MediaPopup() {
               aria-label="close"
               id={togglePopupState.id}
               onClick={deleteData}
-              sx={
-                {
-                  // backgroundColor: "#d4d1cc",
-                  // position: "fiexd",
-                  // left: 100,
-                }
-              }
             >
               <DeleteIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
-        {/* <video autoPlay muted Loop src={togglePopupState.url} alt="img" /> */}
         <img src={togglePopupState.url} alt="img" style={{ marginTop: 56 }} />
       </Dialog>
     </React.Fragment>

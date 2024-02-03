@@ -5,21 +5,16 @@ export const fetchData = createAsyncThunk(
   "itemData/fetchData",
   async function (state) {
     try {
-      const response = await fetch(
-        // "https://family-album-three.vercel.app/api/data",
-        "/api/data",
-        {
-          method: "GET", // HTTP 메소드 지정
-          headers: {
-            // 헤더에 Authorization 추가
-            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("/api/data", {
+        method: "GET",
+        headers: {
+          Authorization: "fiKyi3A8FTuyq65cdObDsodi",
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
 
-      return data; // 액션의 데이터 반환(액션의 payload)
+      return data;
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
@@ -35,11 +30,7 @@ export const itemDataSlice = createSlice({
   },
   reducers: {
     //삭제
-    delData: (state, action) => {
-      // const index = state.itemData.findIndex(
-      //   item => item.id === action.payload
-      // );
-      // state.itemData.splice(index, 1);
+    delDataState: (state, action) => {
       state.itemData = state.itemData.filter(
         item => item.id !== action.payload
       );
@@ -66,6 +57,6 @@ export const itemDataSlice = createSlice({
   },
 });
 
-export const { delData, addDataState } = itemDataSlice.actions;
+export const { delDataState, addDataState } = itemDataSlice.actions;
 
 export default itemDataSlice.reducer;

@@ -20,26 +20,21 @@ export default function FormDialog() {
 
   const token = process.env.REACT_APP_TOKEN;
 
-  const addData = async (newImg, newVideo, title) => {
+  const addData = async (newImg, title) => {
     try {
-      const response = await fetch(
-        // "https://family-album-three.vercel.app/api/data",
-        "/api/data",
-        {
-          method: "POST", // HTTP 메소드 지정
-          headers: {
-            // 헤더에 Authorization 추가
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            img: newImg,
-            video: newVideo,
-            title: title,
-            id: Math.random().toString(36).substr(2, 16),
-          }),
-        }
-      );
+      const response = await fetch("/api/data", {
+        method: "POST", // HTTP 메소드 지정
+        headers: {
+          // 헤더에 Authorization 추가
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          img: newImg,
+          title: title,
+          id: Math.random().toString(36).substr(2, 16),
+        }),
+      });
       const data = await response.json();
       dispatch(addDataState(data));
       console.log(data);

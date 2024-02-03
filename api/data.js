@@ -18,6 +18,11 @@ export default function handler(req, res) {
 
 let itemData = [
   {
+    img: "https://i.pinimg.com/474x/bf/9c/2d/bf9c2d8a696b239f9ba8b746d89a54f6.jpg",
+    title: "고양이",
+    id: "49f52sfmtyv",
+  },
+  {
     img: "https://i.pinimg.com/474x/20/d8/1f/20d81f46c8bb27b0c8c79c5c8d7d9f09.jpg",
     video: "",
     title: "강아지",

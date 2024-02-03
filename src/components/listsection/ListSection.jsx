@@ -26,12 +26,10 @@ function ListSection() {
 
   return (
     <StyledContainer ref={scrollRef} container>
-      {/* <Grid item xs={12}> */}
       <MediaPopup />
       <FormDialog />
       <Masonry />
       <NavigationBar scrollToTop={scrollToTop} />
-      {/* </Grid> */}
     </StyledContainer>
   );
 }

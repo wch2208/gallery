@@ -29,7 +29,7 @@ export default function MediaPopup() {
           method: "DELETE", // HTTP 메소드 지정
           headers: {
             // 헤더에 Authorization 추가
-            Authorization: token,
+            Authorization: "fiKyi3A8FTuyq65cdObDsodi",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

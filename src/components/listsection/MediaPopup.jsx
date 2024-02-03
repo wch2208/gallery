@@ -17,6 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MediaPopup() {
   const dispatch = useDispatch();
   const togglePopupState = useSelector(state => state.openPopup);
+  //vercel Environment Variables에 등록
   const token = process.env.REACT_APP_TOKEN;
 
   const deleteData = async e => {

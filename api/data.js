@@ -1,20 +1,13 @@
 export default function handler(req, res) {
   if (req.method === "GET") {
     // GET 로직
-    const page = parseInt(req.query.page, 10);
-    const limit = parseInt(req.query.limit, 10);
-
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-    const data = itemData.slice(startIndex, endIndex);
-
-    res.status(200).json(data);
+    res.status(200).json(itemData);
   } else if (req.method === "POST") {
     // POST 로직
     const newItem = req.body;
     itemData = [newItem, ...itemData];
 
-    res.status(200).json(itemData[0]);
+    res.status(200).json(itemData);
   } else if (req.method === "DELETE") {
     //DELETE 로직
     const { id } = req.body;

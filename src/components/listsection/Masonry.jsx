@@ -15,9 +15,9 @@ export default function ImageMasonry() {
   const theme = useTheme();
   console.log("masonry itemData, 10개만 와야해: ", itemData);
 
-  useEffect(() => {
-    dispatch(fetchData({ page: 1, limit: 10 }));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchData());
+  // }, [dispatch]);
 
   const fetchMoreData = () => {
     dispatch(fetchData({ page: currentPage, limit: 10 }));

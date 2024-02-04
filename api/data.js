@@ -1,8 +1,8 @@
 export default function handler(req, res) {
   if (req.method === "GET") {
     // GET 로직
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 10;
+    const page = parseInt(req.query.page, 10);
+    const limit = parseInt(req.query.limit, 10);
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
@@ -27,7 +27,7 @@ let itemData = [
   {
     img: "https://picsum.photos/1080/1350?random=6543895614978",
     title: "",
-    id: "x8efcxghkx",
+    id: "2208",
   },
   {
     img: "https://picsum.photos/1080/1080?random=5743635412",

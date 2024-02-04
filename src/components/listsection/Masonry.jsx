@@ -17,7 +17,8 @@ export default function ImageMasonry() {
 
   useEffect(() => {
     dispatch(fetchData({ page: 1 }));
-  }, []);
+    console.log("초기 fetchData 실행, 한 번만 해야함");
+  }, [dispatch]);
 
   const fetchMoreData = () => {
     console.log("한 번 더 추가:", page);

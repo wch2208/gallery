@@ -20,7 +20,7 @@ export default function ImageMasonry() {
   }, [dispatch]);
 
   const fetchMoreData = () => {
-    dispatch(fetchData({ currentPage, limit: 10 }));
+    dispatch(fetchData({ page: currentPage, limit: 10 }));
   };
 
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -40,42 +40,45 @@ export default function ImageMasonry() {
   }
 
   return (
-    <Masonry columns={columns} sx={{ margin: 0 }}>
-      {status === "loading" && <p>Loading...</p>}
+    <>
+      <Masonry columns={columns} sx={{ margin: 0 }}>
+        {status === "loading" && <p>Loading...</p>}
 
-      {status === "succeeded" &&
-        itemData.map(item => (
-          <div key={item.id}>
-            <img
-              srcSet={`${item.img}`}
-              src={`${item.img}`}
-              alt={item.title}
-              //loading="lazy"
-              style={{
-                borderRadius: 10,
-                display: "block",
-                width: "100%",
-              }}
-              onClick={() => {
-                dispatch(
-                  togglePopup({
-                    newState: true,
-                    newUrl: `${item.img}`,
-                    id: `${item.id}`,
-                    title: `${item.title}`,
-                  })
-                );
-              }}
-            />
-          </div>
-        ))}
+        {status === "succeeded" &&
+          itemData.map(item => (
+            <div key={item.id}>
+              <img
+                srcSet={`${item.img}`}
+                src={`${item.img}`}
+                alt={item.title}
+                //loading="lazy"
+                style={{
+                  borderRadius: 10,
+                  display: "block",
+                  width: "100%",
+                }}
+                onClick={() => {
+                  dispatch(
+                    togglePopup({
+                      newState: true,
+                      newUrl: `${item.img}`,
+                      id: `${item.id}`,
+                      title: `${item.title}`,
+                    })
+                  );
+                }}
+              />
+            </div>
+          ))}
+        {status === "failed" && <p>Error fetching data.</p>}
+      </Masonry>
       <InfiniteScroll
+        style={{ marginBottom: "100px" }}
         dataLength={itemData.length}
         next={fetchMoreData}
         hasMore={hasMore}
-        // loader={<p>Loading...</p>}
+        loader={<p>Loading...</p>}
       />
-      {status === "failed" && <p>Error fetching data.</p>}
-    </Masonry>
+    </>
   );
 }

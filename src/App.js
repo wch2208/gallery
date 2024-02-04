@@ -8,9 +8,9 @@ import { fetchData } from "./features/itemData/itemDataSlice";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchData({ page: 1 }));
+  // }, [dispatch]);
 
   const StyledContainer = styled(Grid)(({ theme }) => ({
     width: "100%",

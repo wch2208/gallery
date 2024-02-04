@@ -8,19 +8,20 @@ import { useEffect } from "react";
 import { fetchData } from "../../features/itemData/itemDataSlice";
 
 export default function ImageMasonry() {
-  const { itemData, status, currentPage, hasMore } = useSelector(
+  const { itemData, status, page, hasMore } = useSelector(
     state => state.itemData
   );
   const dispatch = useDispatch();
   const theme = useTheme();
-  console.log("masonry itemData, 10개만 와야해: ", itemData);
+  console.log("currentPage", page);
 
-  // useEffect(() => {
-  //   dispatch(fetchData());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchData({ page: 1 }));
+  }, []);
 
   const fetchMoreData = () => {
-    dispatch(fetchData({ page: currentPage, limit: 10 }));
+    console.log("한 번 더 추가:", page);
+    dispatch(fetchData({ page: page + 1 }));
   };
 
   const isXs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -73,7 +74,7 @@ export default function ImageMasonry() {
         {status === "failed" && <p>Error fetching data.</p>}
       </Masonry>
       <InfiniteScroll
-        style={{ marginBottom: "100px" }}
+        style={{ height: "100px" }}
         dataLength={itemData.length}
         next={fetchMoreData}
         hasMore={hasMore}

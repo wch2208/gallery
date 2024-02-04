@@ -50,9 +50,7 @@ export const itemDataSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = "succeeded";
         //무한스크롤 데이터 추가로딩을 위한 로직
-        //기존의 데이터에 push로 뒤에 이어 붙이기
-        // state.itemData = [...state.itemData, ...action.payload];
-        state.itemData = action.payload;
+        state.itemData = [...state.itemData, ...action.payload];
         //중단 지점 설정
         if (
           action.payload.length === 0 ||

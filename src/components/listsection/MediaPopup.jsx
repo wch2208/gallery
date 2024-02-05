@@ -23,15 +23,15 @@ export default function MediaPopup() {
 
   const deleteData = async e => {
     try {
-      const response = await fetch("/api/data", {
+      const response = await fetch(`/api/data/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: token,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          id: id,
-        }),
+        // body: JSON.stringify({
+        //   id: id,
+        // }),
       });
       const data = await response.json();
       dispatch(delDataState(id));

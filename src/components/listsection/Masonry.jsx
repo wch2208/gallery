@@ -43,9 +43,10 @@ export default function ImageMasonry() {
       <div
         style={{
           marginBottom: "-100px",
+          color: "white",
         }}
       >
-        Loading...
+        loading..
       </div>
       <InfiniteScroll
         dataLength={itemData.length}

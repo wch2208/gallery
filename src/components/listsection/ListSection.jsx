@@ -6,11 +6,7 @@ import NavigationBar from "./navigationBar/NavigationBar";
 import { useRef } from "react";
 import FormDialog from "./navigationBar/formDialog/FormDialog";
 
-import { useDispatch, useSelector } from "react-redux";
-
 function ListSection() {
-  const dispatch = useDispatch();
-
   const scrollRef = useRef(null);
 
   const StyledContainer = styled(Grid)(({ theme }) => ({
@@ -18,7 +14,6 @@ function ListSection() {
     height: "100vh",
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    // overflow: "scroll",
   }));
 
   const scrollToTop = () => {
@@ -33,7 +28,6 @@ function ListSection() {
       <MediaPopup />
       <FormDialog />
       <Masonry />
-
       <NavigationBar scrollToTop={scrollToTop} />
     </StyledContainer>
   );

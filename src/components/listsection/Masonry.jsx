@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchData, addDataState } from "../../features/itemData/itemDataSlice";
 import Images from "./Images";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect } from "react";
 
 export default function ImageMasonry() {
   const { currentPage } = useSelector(state => state.itemData.page);
@@ -18,17 +17,10 @@ export default function ImageMasonry() {
   const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
 
-  useEffect(() => {
-    console.log("useEffct run");
-    dispatch(fetchData({ page: 1 }));
-    let local = JSON.parse(localStorage.getItem("itemData"));
-    local && dispatch(addDataState(local));
-  }, []);
-  // const fetchMore = () => {
-  //   //
-  //   dispatch(fetchData({ page: currentPage }));
-  //   // window.scrollTo(0, document.body.scrollHeight);
-  // };
+  const fetchMore = () => {
+    dispatch(fetchData({ page: currentPage }));
+    window.scrollTo(0, document.body.scrollHeight);
+  };
 
   let columns;
   if (isXs) {
@@ -42,8 +34,16 @@ export default function ImageMasonry() {
   }
 
   return (
-    <Masonry columns={columns} sx={{ margin: 0 }}>
-      <Images />
-    </Masonry>
+    <InfiniteScroll
+      dataLength={itemData.length}
+      next={fetchMore}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+      endMessage={<p>Nothing more to show</p>}
+    >
+      <Masonry columns={columns} sx={{ margin: 0 }}>
+        <Images />
+      </Masonry>
+    </InfiniteScroll>
   );
 }

@@ -2,7 +2,7 @@ import Masonry from "@mui/lab/Masonry";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../features/itemData/itemDataSlice";
+import { fetchData, addDataState } from "../../features/itemData/itemDataSlice";
 import Images from "./Images";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
@@ -18,15 +18,17 @@ export default function ImageMasonry() {
   const isMd = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
 
-  // useEffect(() => {
-  //   console.log("useEffct run");
+  useEffect(() => {
+    console.log("useEffct run");
+    dispatch(fetchData({ page: 1 }));
+    let local = JSON.parse(localStorage.getItem("itemData"));
+    local && dispatch(addDataState(local));
+  }, []);
+  // const fetchMore = () => {
+  //   //
   //   dispatch(fetchData({ page: currentPage }));
-  // }, []);
-  const fetchMore = () => {
-    //
-    dispatch(fetchData({ page: currentPage }));
-    // window.scrollTo(0, document.body.scrollHeight);
-  };
+  //   // window.scrollTo(0, document.body.scrollHeight);
+  // };
 
   let columns;
   if (isXs) {
@@ -40,23 +42,8 @@ export default function ImageMasonry() {
   }
 
   return (
-    <InfiniteScroll
-      dataLength={itemData.length}
-      next={fetchMore}
-      hasMore={true}
-      loader={<p>Loading...</p>}
-      endMessage={<p>No more data to load.</p>}
-    >
-      {/* <button onClick={fetchMore} style={{ marginBottom: "40px" }}>
-        more
-      </button> */}
-      <img
-        style={{ height: "100vh", width: "100%", objectFit: "cover" }}
-        src={"https://picsum.photos/id/1000/1080/1080"}
-      />
-      <Masonry columns={2} sx={{ margin: 0 }}>
-        <Images />
-      </Masonry>
-    </InfiniteScroll>
+    <Masonry columns={columns} sx={{ margin: 0 }}>
+      <Images />
+    </Masonry>
   );
 }

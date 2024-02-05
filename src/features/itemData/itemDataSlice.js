@@ -7,7 +7,7 @@ export const fetchData = createAsyncThunk(
     try {
       console.log("패치함수의 page", getState().itemData.page);
       const response = await fetch(
-        `/api/data?page=${getState().itemData.page}&limit=100`,
+        `/api/data?page=${getState().itemData.page}&limit=500`,
         {
           method: "GET",
           headers: {
@@ -58,6 +58,7 @@ export const itemDataSlice = createSlice({
         state.status = "succeeded";
         state.itemData = [...state.itemData, ...action.payload];
         state.page += 1;
+        localStorage.setItem("itemData", JSON.stringify(state.itemData));
       })
 
       .addCase(fetchData.rejected, (state, action) => {

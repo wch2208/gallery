@@ -23,7 +23,7 @@ export default function FormDialog() {
   async function getClipboardURL() {
     try {
       const text = await navigator.clipboard.readText();
-      console.log(text);
+      console.log("클립보드 내용: ", text);
       return text;
     } catch (err) {
       console.error("Failed to read clipboard contents: ", err);
@@ -82,6 +82,7 @@ export default function FormDialog() {
               })
             );
             addData(newImg, title);
+            setClipboard("");
           },
         }}
       >
@@ -91,14 +92,14 @@ export default function FormDialog() {
           <Box sx={{ display: "flex" }}>
             <TextField
               required
+              disabled={clipboard == "" ? true : false}
               margin="dense"
               id="img"
               name="imgUrl"
               type="url"
-              fullWidth
               variant="standard"
               sx={{ marginBottom: "40px", marginTop: 0 }}
-              defaultValue={clipboard}
+              value={clipboard}
             />
             {clipboard == "" ? (
               <ContentPasteIcon

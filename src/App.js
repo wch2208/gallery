@@ -7,13 +7,9 @@ import { fetchData } from "./features/itemData/itemDataSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const [count, setCount] = React.useState(0);
 
   useEffect(() => {
     dispatch(fetchData());
-    const timer = setTimeout(() => {
-      setCount(5);
-    }, 5000);
   }, [dispatch]);
 
   const StyledContainer = styled(Grid)(({ theme }) => ({
@@ -25,7 +21,6 @@ function App() {
   return (
     <StyledContainer container>
       <Grid container sx={{ width: "100%", height: "100%", padding: "0px" }}>
-        {/* {count === 5 ? <ListSection /> : <p>로딩중..</p>} */}
         <ListSection />
       </Grid>
     </StyledContainer>

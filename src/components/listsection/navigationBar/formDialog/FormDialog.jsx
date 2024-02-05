@@ -90,6 +90,7 @@ export default function FormDialog() {
           <DialogContentText>이미지 주소:</DialogContentText>
           <Box sx={{ display: "flex" }}>
             <TextField
+              required
               margin="dense"
               id="img"
               name="imgUrl"

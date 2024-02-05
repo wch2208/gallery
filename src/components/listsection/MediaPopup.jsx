@@ -73,7 +73,7 @@ export default function MediaPopup() {
             >
               <CloseIcon />
             </IconButton> */}
-            <p>{togglePopupState.title}</p>
+            <p></p>
             <IconButton
               edge="end"
               color="inherit"
@@ -87,6 +87,7 @@ export default function MediaPopup() {
           <img
             src={togglePopupState.url}
             alt="img"
+            title={togglePopupState.title}
             style={{
               objectFit: "scale-down",
               height: "90vh",
@@ -98,6 +99,19 @@ export default function MediaPopup() {
               dispatch(togglePopup({ newState: false, newUrl: `/` }));
             }}
           />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "1.5em",
+              fontWeight: "bold",
+              color: "black",
+              textShadow: "2px 2.5px 3px white",
+              marginTop: "10px",
+            }}
+          >
+            {togglePopupState.title}
+          </Box>
         </AppBar>
       </Dialog>
     </React.Fragment>

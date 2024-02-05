@@ -6,7 +6,6 @@ export default function handler(req, res) {
     // POST 로직
     const newItem = req.body;
     itemData = [newItem, ...itemData];
-
     res.status(200).json(itemData);
   } else if (req.method === "DELETE") {
     //DELETE 로직

@@ -3,9 +3,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //비동기 액션 생성
 export const fetchData = createAsyncThunk(
   "itemData/fetchData",
-  async function ({ page }, { getState }) {
+  async function (_, { getState }) {
     try {
-      console.log("패치함수의 page", getState().itemData.page);
       const response = await fetch(
         `/api/data?page=${getState().itemData.page}&limit=10`,
         {
@@ -21,7 +20,7 @@ export const fetchData = createAsyncThunk(
       }
       const data = await response.json();
 
-      console.log("패치함수의 data", data);
+      console.log("fetchData의 data", data);
       return data.items;
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);

@@ -4,11 +4,10 @@ import { useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../features/itemData/itemDataSlice";
 import Images from "./Images";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function ImageMasonry() {
-  const { currentPage } = useSelector(state => state.itemData.page);
   const { itemData } = useSelector(state => state.itemData);
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -19,8 +18,7 @@ export default function ImageMasonry() {
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const fetchMore = () => {
-    dispatch(fetchData({ page: currentPage }));
-    window.scrollTo(0, document.body.scrollHeight);
+    dispatch(fetchData());
   };
 
   useEffect(() => {

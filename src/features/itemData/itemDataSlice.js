@@ -4,6 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchData = createAsyncThunk(
   "itemData/fetchData",
   async function ({ page }, { getState }) {
+    console.log("패치함수의 page", page);
     try {
       const response = await fetch(`/api/data?page=${page}&limit=2`, {
         method: "GET",
@@ -16,7 +17,7 @@ export const fetchData = createAsyncThunk(
         throw new Error("서버에서 데이터를 가져오는 데 실패했습니다.");
       }
       const data = await response.json();
-      console.log("패치함수의 page", page);
+
       console.log("패치함수의 data", data);
       return data;
     } catch (error) {

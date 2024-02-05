@@ -4,9 +4,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchData = createAsyncThunk(
   "itemData/fetchData",
   async function ({ page }, { getState }) {
-    console.log("패치함수의 page", page);
     try {
-      const response = await fetch(`/api/data?page=${page}&limit=2`, {
+      console.log("패치함수의 page", page);
+      const response = await fetch(`/api/data?page=${page}&limit=5`, {
         method: "GET",
         headers: {
           Authorization: process.env.REACT_APP_TOKEN,
@@ -56,6 +56,7 @@ export const itemDataSlice = createSlice({
         state.itemData = [...state.itemData, ...action.payload];
         state.page += 1;
       })
+
       .addCase(fetchData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;

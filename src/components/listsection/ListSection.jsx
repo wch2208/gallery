@@ -30,7 +30,7 @@ function ListSection() {
 
   const fetchMore = () => {
     //
-    dispatch(fetchData({ currentPage }));
+    dispatch(fetchData({ page: currentPage }));
     console.log("추가요청하는 함수에 전달되는 page:", currentPage);
   };
 

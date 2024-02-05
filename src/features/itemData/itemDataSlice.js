@@ -19,7 +19,7 @@ export const fetchData = createAsyncThunk(
       const data = await response.json();
 
       console.log("패치함수의 data", data);
-      return data;
+      return data.items;
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }

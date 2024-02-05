@@ -17,8 +17,8 @@ export default function handler(req, res) {
 
 let itemData = [
   {
-    img: "https://picsum.photos/1080/1350?random=6543895614978",
-    title: "1",
+    img: "https://picsum.photos/1284/2778?random=6543895614978",
+    title: "아이폰 배경",
     id: "2208",
   },
   {
@@ -42,13 +42,13 @@ let itemData = [
     id: "s3wse1h2j5",
   },
   {
-    img: "https://picsum.photos/1080/1080?random=132512315",
-    title: "6",
+    img: "https://picsum.photos/1284/2778?random=132512315",
+    title: "아이폰 배경",
     id: "mjgzmgxi42",
   },
   {
-    img: "https://picsum.photos/1080/1350?random=321562625",
-    title: "7",
+    img: "https://picsum.photos/1284/2778?random=321562625",
+    title: "아이폰 배경",
     id: "5cml841w4ue",
   },
   {
@@ -67,8 +67,8 @@ let itemData = [
     id: "a8zea1b30zv",
   },
   {
-    img: "https://picsum.photos/1080/1350?random=125325134",
-    title: "11",
+    img: "https://picsum.photos/1284/2778?random=125325134",
+    title: "아이폰 배경",
     id: "h1gfjif83b",
   },
   {
@@ -82,8 +82,8 @@ let itemData = [
     id: "rrfvdn5mfa",
   },
   {
-    img: "https://picsum.photos/1080/1350?random=298364729",
-    title: "14",
+    img: "https://picsum.photos/1284/2778?random=298364729",
+    title: "아이폰 배경",
     id: "jrchjl1ew0s",
   },
   {
@@ -112,8 +112,8 @@ let itemData = [
     id: "lzug7kvcp1",
   },
   {
-    img: "https://picsum.photos/1080/1350?random=568452341",
-    title: "20",
+    img: "https://picsum.photos/1284/2778?random=568452341",
+    title: "아이폰 배경",
     id: "9ebnyh2ez4t",
   },
 ];

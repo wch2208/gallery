@@ -18,7 +18,7 @@ function ListSection() {
     height: "100vh",
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    overflow: "scroll",
+    // overflow: "scroll",
   }));
 
   const scrollToTop = () => {

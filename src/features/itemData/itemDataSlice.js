@@ -5,14 +5,17 @@ export const fetchData = createAsyncThunk(
   "itemData/fetchData",
   async function ({ page }, { getState }) {
     try {
-      console.log("패치함수의 page", page);
-      const response = await fetch(`/api/data?page=${page}&limit=5`, {
-        method: "GET",
-        headers: {
-          Authorization: process.env.REACT_APP_TOKEN,
-          "Content-Type": "application/json",
-        },
-      });
+      console.log("패치함수의 page", getState().itemData.page);
+      const response = await fetch(
+        `/api/data?page=${getState().itemData.page}&limit=1000`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: process.env.REACT_APP_TOKEN,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error("서버에서 데이터를 가져오는 데 실패했습니다.");
       }

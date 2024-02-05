@@ -18,7 +18,7 @@ export default function FormDialog() {
   const dispatch = useDispatch();
   const isOpen = useSelector(state => state.addOpen.state);
   const [clipboard, setClipboard] = useState("");
-  getClipboardURL().then(setClipboard);
+
   //클립보드의 text 가져오는 함수
   async function getClipboardURL() {
     try {
@@ -88,11 +88,10 @@ export default function FormDialog() {
       >
         <DialogTitle>컨텐츠 추가하기</DialogTitle>
         <DialogContent>
-          <DialogContentText>Value from Clipboard</DialogContentText>
+          {/* <DialogContentText>Img Url</DialogContentText> */}
           <Box sx={{ display: "flex" }}>
             <TextField
               required
-              disabled
               margin="dense"
               id="img"
               name="imgUrl"
@@ -100,9 +99,10 @@ export default function FormDialog() {
               variant="standard"
               sx={{ marginBottom: "40px", marginTop: 0 }}
               value={clipboard}
-              // onChange={e => setClipboard(e.target.value)}
+              onChange={e => setClipboard(e.target.value)}
+              placeholder="Img Url 붙여넣기 하세요."
             />
-            {/* {clipboard == "" ? (
+            {clipboard == "" ? (
               <ContentPasteIcon
                 onClick={() => {
                   getClipboardURL().then(setClipboard);
@@ -114,7 +114,7 @@ export default function FormDialog() {
                   setClipboard("");
                 }}
               />
-            )} */}
+            )}
           </Box>
 
           {/* <DialogContentText>제목:</DialogContentText> */}

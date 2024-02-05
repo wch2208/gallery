@@ -14,7 +14,7 @@ function NavigationBar({ scrollToTop }) {
   }));
 
   return (
-    <StyledContainer item xs={12}>
+    <StyledContainer xs={12}>
       <BottomNavigation scrollToTop={scrollToTop} />
     </StyledContainer>
   );

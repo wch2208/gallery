@@ -16,7 +16,7 @@ export default function handler(req, res) {
   }
 }
 
-const itemData = [
+let itemData = [
   {
     img: "https://picsum.photos/1080/1350?random=6543895614978",
     title: "1",

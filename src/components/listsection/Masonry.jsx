@@ -21,20 +21,20 @@ export default function ImageMasonry() {
     // window.scrollTo(0, document.body.scrollHeight);
   };
 
-  let columns;
-  if (isXs) {
-    columns = 2;
-  } else if (isSm) {
-    columns = 3;
-  } else if (isMd) {
-    columns = 4;
-  } else if (isLg) {
-    columns = 5;
-  }
+  // let columns;
+  // if (isXs) {
+  //   columns = 2;
+  // } else if (isSm) {
+  //   columns = 3;
+  // } else if (isMd) {
+  //   columns = 4;
+  // } else if (isLg) {
+  //   columns = 5;
+  // }
 
   return (
     <>
-      <Masonry columns={columns} sx={{ margin: 0 }}>
+      <Masonry columns={2} sx={{ margin: 0 }}>
         <Images />
       </Masonry>
       <button onClick={fetchMore} style={{ marginBottom: "40px" }}>

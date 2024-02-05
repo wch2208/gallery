@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { togglePopup } from "../../features/openPopup/openPopupSlice";
+import { useState } from "react";
+import { Skeleton } from "@mui/material";
 
 export default function Images() {
   const dispatch = useDispatch();

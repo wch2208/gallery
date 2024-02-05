@@ -111,7 +111,7 @@ export default function handler(req, res) {
     const endIndex = page * limit; //page : 1, limit : 2, 2*2
 
     let paginatedItems = itemData.slice(startIndex, endIndex); //slice(2,4),
-    res.status(200).json(paginatedItems);
+    res.status(200).json(paginatedItems, page, limit);
   } else if (req.method === "POST") {
     // POST 로직
     const newItem = req.body;

@@ -10,7 +10,7 @@ export default function handler(req, res) {
     res.status(200).json(itemData);
   } else if (req.method === "DELETE") {
     //DELETE 로직
-    const { id } = req.params;
+    const id = req.params.id;
     itemData = itemData.filter(item => item.id !== id);
     res.status(200).json(itemData);
   }

@@ -34,12 +34,13 @@ export default function MediaPopup() {
         // }),
       });
       const data = await response.json();
-      dispatch(delDataState(id));
-      dispatch(togglePopup({ newState: false, newUrl: `/` }));
+
       console.log(data);
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
     }
+    dispatch(delDataState(id));
+    dispatch(togglePopup({ newState: false, newUrl: `/` }));
   };
 
   return (

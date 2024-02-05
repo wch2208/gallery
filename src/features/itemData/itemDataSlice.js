@@ -7,7 +7,7 @@ export const fetchData = createAsyncThunk(
     try {
       console.log("패치함수의 page", getState().itemData.page);
       const response = await fetch(
-        `/api/data?page=${getState().itemData.page}&limit=1000`,
+        `/api/data?page=${getState().itemData.page}&limit=100`,
         {
           method: "GET",
           headers: {

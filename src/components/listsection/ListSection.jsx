@@ -27,6 +27,7 @@ function ListSection() {
     <StyledContainer ref={scrollRef} container>
       <MediaPopup />
       <FormDialog />
+
       <Masonry />
       <NavigationBar scrollToTop={scrollToTop} />
     </StyledContainer>

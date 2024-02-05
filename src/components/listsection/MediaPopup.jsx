@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePopup } from "../../features/openPopup/openPopupSlice";
@@ -44,22 +45,24 @@ export default function MediaPopup() {
   return (
     <React.Fragment>
       <Dialog
-        fullScreen
+        // fullScreen
         open={togglePopupState.state}
         TransitionComponent={Transition}
-        sx={{ "& .MuiDialog-paper": { backgroundColor: "black" } }}
       >
-        <AppBar sx={{ position: "fiexd", top: 0, height: "55px" }}>
+        <AppBar
+          sx={{
+            height: "0px",
+          }}
+        >
           <Toolbar
             sx={{
-              position: "fixed",
-              top: 0,
               width: "90%",
               display: "inline-flex",
               justifyContent: "space-between",
+              marginBottom: "-20px",
             }}
           >
-            <IconButton
+            {/* <IconButton
               edge="start"
               color="inherit"
               aria-label="close"
@@ -68,7 +71,7 @@ export default function MediaPopup() {
               }}
             >
               <CloseIcon />
-            </IconButton>
+            </IconButton> */}
             <p>{togglePopupState.title}</p>
             <IconButton
               edge="end"
@@ -80,8 +83,21 @@ export default function MediaPopup() {
               <DeleteIcon />
             </IconButton>
           </Toolbar>
+          <img
+            src={togglePopupState.url}
+            alt="img"
+            style={{
+              objectFit: "scale-down",
+              height: "90vh",
+              marginTop: "20px",
+              marginLeft: "10px",
+              marginRight: "10px",
+            }}
+            onClick={() => {
+              dispatch(togglePopup({ newState: false, newUrl: `/` }));
+            }}
+          />
         </AppBar>
-        <img src={togglePopupState.url} alt="img" style={{ marginTop: 56 }} />
       </Dialog>
     </React.Fragment>
   );

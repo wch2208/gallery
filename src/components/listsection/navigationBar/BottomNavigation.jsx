@@ -37,7 +37,9 @@ export default function SimpleBottomNavigation({ scrollToTop }) {
         <BottomNavigationAction
           label="Home"
           icon={<HomeIcon />}
-          onClick={scrollToTop}
+          onClick={() => {
+            window.location.reload();
+          }}
         />
         <BottomNavigationAction
           label="Add"

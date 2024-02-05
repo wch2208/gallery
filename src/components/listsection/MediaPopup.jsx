@@ -55,7 +55,7 @@ export default function MediaPopup() {
             height: "0px",
           }}
         >
-          <Toolbar
+          {/* <Toolbar
             sx={{
               width: "90%",
               display: "inline-flex",
@@ -63,17 +63,6 @@ export default function MediaPopup() {
               marginBottom: "-20px",
             }}
           >
-            {/* <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="close"
-              onClick={() => {
-                dispatch(togglePopup({ newState: false, newUrl: `/` }));
-              }}
-            >
-              <CloseIcon />
-            </IconButton> */}
-            <p></p>
             <IconButton
               edge="end"
               color="inherit"
@@ -83,14 +72,14 @@ export default function MediaPopup() {
             >
               <DeleteIcon />
             </IconButton>
-          </Toolbar>
+          </Toolbar> */}
           <img
             src={togglePopupState.url}
             alt="img"
             title={togglePopupState.title}
             style={{
               objectFit: "scale-down",
-              height: "90vh",
+              height: "80vh",
               marginTop: "20px",
               marginLeft: "10px",
               marginRight: "10px",
@@ -99,7 +88,7 @@ export default function MediaPopup() {
               dispatch(togglePopup({ newState: false, newUrl: `/` }));
             }}
           />
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -111,7 +100,7 @@ export default function MediaPopup() {
             }}
           >
             {togglePopupState.title}
-          </Box>
+          </Box> */}
         </AppBar>
       </Dialog>
     </React.Fragment>

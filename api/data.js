@@ -7,7 +7,7 @@ export default function handler(req, res) {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
-    const paginatedItems = itemData.slice(startIndex, endIndex);
+    let paginatedItems = itemData.slice(startIndex, endIndex);
     res.status(200).json(paginatedItems);
   } else if (req.method === "POST") {
     // POST 로직

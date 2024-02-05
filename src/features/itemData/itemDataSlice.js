@@ -3,16 +3,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //비동기 액션 생성
 export const fetchData = createAsyncThunk(
   "itemData/fetchData",
-  async function () {
+  async function ({ page }, { getState }) {
     try {
-      const response = await fetch(`/api/data`, {
+      const response = await fetch(`/api/data?page=${page}&limit=2`, {
         method: "GET",
         headers: {
           Authorization: process.env.REACT_APP_TOKEN,
           "Content-Type": "application/json",
         },
       });
+      if (!response.ok) {
+        throw new Error("서버에서 데이터를 가져오는 데 실패했습니다.");
+      }
       const data = await response.json();
+      console.log("패치함수의 page", page);
+      console.log("패치함수의 data", data);
       return data;
     } catch (error) {
       console.log("요청 중 에러가 발생했습니다.", error);
@@ -26,6 +31,7 @@ export const itemDataSlice = createSlice({
     itemData: [],
     status: "idle",
     error: null,
+    page: 1,
   },
   reducers: {
     //삭제
@@ -46,7 +52,8 @@ export const itemDataSlice = createSlice({
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.itemData = action.payload;
+        state.itemData = [...state.itemData, ...action.payload];
+        state.page += 1;
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.status = "failed";

@@ -1,7 +1,14 @@
 export default function handler(req, res) {
   if (req.method === "GET") {
     // GET 로직
-    res.status(200).json(itemData);
+    // res.status(200).json(itemData);
+    const page = parseInt(req.query.page) || 1; // 페이지 번호, 기본값은 1
+    const limit = parseInt(req.query.limit) || 10; // 한 페이지당 항목 수, 기본값은 10
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const paginatedItems = itemData.slice(startIndex, endIndex);
+    res.status(200).json(paginatedItems);
   } else if (req.method === "POST") {
     // POST 로직
     const newItem = req.body;

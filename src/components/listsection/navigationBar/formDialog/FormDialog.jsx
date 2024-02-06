@@ -112,7 +112,9 @@ export default function FormDialog() {
             addData(newImg, title);
             setClipboard("");
             //새로고침
-            // window.location.reload();
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
           },
         }}
       >

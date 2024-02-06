@@ -5,6 +5,32 @@ export default function handler(req, res) {
       title: "바닷가 길",
       id: "0",
     },
+    {
+      img: "https://i.pinimg.com/474x/7f/42/63/7f4263469a22734e4730bc1ac684198c.jpg",
+      title: "고양이",
+      id: "1",
+    },
+    {
+      img: "https://i.pinimg.com/474x/1e/6f/c9/1e6fc99a3850bf59d91dd695daafd0bd.jpg",
+      title: "책장",
+      id: "2",
+    },
+    {
+      img: "https://i.pinimg.com/474x/38/20/56/382056b2c103113b1ebb1191a90d803a.jpg",
+      title: "가구",
+      id: "3",
+    },
+    {
+      img: "https://i.pinimg.com/474x/af/8a/cf/af8acfd552d8fd95cd0e86dcbefc865a.jpg",
+      title: "어린양",
+      id: "4",
+    },
+
+    {
+      img: "https://i.pinimg.com/474x/9e/99/4a/9e994ae81ba983ac9069667d6d965ab7.jpg",
+      title: "트리",
+      id: "5",
+    },
   ];
 
   if (req.method === "GET") {

@@ -3,14 +3,24 @@ import ListSection from "./components/listsection/ListSection";
 import { styled } from "@mui/material/styles";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchData } from "./features/itemData/itemDataSlice";
+import { db } from "./firebase-config";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { addDataState } from "./features/itemData/itemDataSlice";
 
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchData());
-  // }, []);
+  useEffect(() => {
+    const getFirebaseDb = async () => {
+      const dbCol = collection(db, "itemData");
+      const q = query(dbCol, orderBy("time", "desc"));
+      const snapShot = await getDocs(q);
+      const dbList = snapShot.docs.map(doc => doc.data());
+      dispatch(addDataState(dbList));
+    };
+
+    getFirebaseDb();
+  }, []);
 
   const StyledContainer = styled(Grid)(({ theme }) => ({
     width: "100%",

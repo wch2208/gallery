@@ -13,6 +13,8 @@ import { addDataState } from "../../../../features/itemData/itemDataSlice";
 import { useState } from "react";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import ContentPasteOffIcon from "@mui/icons-material/ContentPasteOff";
+import { db } from "../../../../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function FormDialog() {
   const dispatch = useDispatch();
@@ -36,6 +38,15 @@ export default function FormDialog() {
   const handleClose = () => {
     dispatch(addOpen({ newState: false }));
   };
+
+  async function addDocument(fbData) {
+    try {
+      const docRef = await addDoc(collection(db, "itemData"), fbData);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  }
 
   const token = process.env.REACT_APP_TOKEN;
 
@@ -62,6 +73,17 @@ export default function FormDialog() {
     }
   };
 
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 1을 더합니다.
+    const day = date.getDate().toString().padStart(2, "0");
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    return `${year}${month}${day}${hours}${minutes}${seconds}`;
+  }
+
   return (
     <React.Fragment>
       <Dialog
@@ -75,6 +97,16 @@ export default function FormDialog() {
             const formJson = Object.fromEntries(formData.entries());
             const newImg = formJson.imgUrl;
             const title = formJson.text;
+            //firebase에 추가하기
+
+            const fbData = {
+              img: newImg,
+              title: title,
+              id: Math.random().toString(36).substr(2, 16),
+              time: formatDate(new Date()),
+            };
+
+            addDocument(fbData);
 
             dispatch(
               addOpen({
@@ -83,6 +115,8 @@ export default function FormDialog() {
             );
             addData(newImg, title);
             setClipboard("");
+            //새로고침
+            window.location.reload();
           },
         }}
       >

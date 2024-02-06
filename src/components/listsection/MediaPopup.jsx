@@ -23,12 +23,12 @@ export default function MediaPopup() {
 
   //파이어베이스 데이터 삭제
   async function deleteFirebaseData() {
-    const docRef = doc(db, "itemData", togglePopupState.id);
+    const docRef = doc(db, "itemData", togglePopupState.docId);
     await deleteDoc(docRef);
   }
 
   //
-  const deleteData = async (e, id) => {
+  const deleteData = async e => {
     try {
       const response = await fetch(`/api/data`, {
         method: "DELETE",
@@ -50,7 +50,7 @@ export default function MediaPopup() {
     dispatch(togglePopup({ newState: false, newUrl: `/`, id: id }));
   };
 
-  console.log("target id?", id);
+  console.log("togglePopupState?", togglePopupState);
   return (
     <React.Fragment>
       <Dialog open={togglePopupState.state} TransitionComponent={Transition}>

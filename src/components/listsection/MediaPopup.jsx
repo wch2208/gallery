@@ -9,7 +9,7 @@ import { togglePopup } from "../../features/openPopup/openPopupSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { delDataState } from "../../features/itemData/itemDataSlice";
 import { db } from "../../firebase-config";
-import { doc, deleteDoc, query, where } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -74,7 +74,7 @@ export default function MediaPopup() {
               id={togglePopupState.id}
               onClick={() => {
                 deleteData();
-                deleteFirebaseData(togglePopupState.id)
+                deleteFirebaseData()
                   .then(() => {
                     console.log("삭제 완료");
                   })

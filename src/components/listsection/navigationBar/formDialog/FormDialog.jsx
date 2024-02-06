@@ -102,7 +102,10 @@ export default function FormDialog() {
               time: formatDate(new Date()),
             };
 
-            addDocument(fbData);
+            addDocument(fbData).then(() => {
+              window.location.reload();
+              console.log("데이터 추가 완료");
+            });
 
             dispatch(
               addOpen({
@@ -111,10 +114,6 @@ export default function FormDialog() {
             );
             addData(newImg, title);
             setClipboard("");
-            //새로고침
-            setTimeout(() => {
-              window.location.reload();
-            }, 500);
           },
         }}
       >

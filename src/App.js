@@ -15,8 +15,12 @@ function App() {
       const dbCol = collection(db, "itemData");
       const q = query(dbCol, orderBy("time", "desc"));
       const snapShot = await getDocs(q);
-      const dbList = snapShot.docs.map(doc => doc.data());
+      const dbList = snapShot.docs.map(doc => ({
+        ...doc.data(),
+        docId: doc.id,
+      }));
       dispatch(addDataState(dbList));
+      console.log(dbList);
     };
 
     getFirebaseDb();

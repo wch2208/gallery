@@ -25,6 +25,7 @@ export default function Images() {
                   newUrl: `${item.img}`,
                   id: `${item.id}`,
                   title: `${item.title}`,
+                  docId: `${item.docId}`,
                 })
               );
             }}

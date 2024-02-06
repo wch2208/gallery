@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { addOpen } from "../../../../features/addInputModal/addInputModalSlice";
@@ -31,9 +30,6 @@ export default function FormDialog() {
       console.error("Failed to read clipboard contents: ", err);
     }
   }
-  // 붙여넣기 버튼을 만든다.
-  // 버튼을 누르면 함수가 작동하면서 state를 만들고
-  // state를 input에 넣는다.
 
   const handleClose = () => {
     dispatch(addOpen({ newState: false }));
